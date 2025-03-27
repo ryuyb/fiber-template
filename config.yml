@@ -1,0 +1,7 @@
+server:
+  addr: 0.0.0.0:8000
+
+database:
+  driver: sqlite3
+  source: ":memory:?_fk=1"
+  migrate: true
