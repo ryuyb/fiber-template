@@ -9,8 +9,11 @@ import (
 
 	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
+	fiberSwagger "github.com/swaggo/fiber-swagger"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	_ "live-poilot/docs"
 )
 
 var flagconf string
@@ -38,6 +41,7 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 
 	middleware.FiberMiddleware(app, logger)
 
+	app.Get("/swagger/*", fiberSwagger.WrapHandler)
 	api := app.Group("/api")
 	for _, appRoute := range appRoutes {
 		appRoute.ApplyRoutes(api)
@@ -52,6 +56,7 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 // @version 1.0
 // @description This is an API for Live
 
+// @host 127.0.0.1:8000
 // @BasePath /api
 func main() {
 	cfg := conf.New(flagconf)
