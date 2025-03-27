@@ -2,6 +2,7 @@
 # init env
 init:
 	go install github.com/air-verse/air@latest
+	go install github.com/swaggo/swag/cmd/swag@latest
 	go install github.com/google/wire/cmd/wire@latest
 
 .PHONY: generate
@@ -25,6 +26,10 @@ air:
 # build
 build:
 	mkdir -p bin/ & go build -o ./bin/ ./...
+
+.PHONY: swagger
+swagger:
+	swag init -g cmd/server/main.go --output docs
 
 # show help
 help:

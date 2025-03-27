@@ -49,9 +49,21 @@ database:
 
 ## API Documentation
 
+### Swagger UI
+
+Interactive API documentation is available at:  
+`http://localhost:8000/swagger/index.html`
+
+To generate Swagger docs:
+```bash
+swag init -g cmd/server/main.go --output docs
+```
+
+### API Endpoints
+
 Base URL: `http://localhost:8000/api`
 
-### User
+#### User
 
 - `GET /user/:id` - Get user by ID
 
