@@ -24,19 +24,9 @@ func init() {
 
 func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 	app := fiber.New(fiber.Config{
-		JSONEncoder: sonic.Marshal,
-		JSONDecoder: sonic.Unmarshal,
-		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
-			code := fiber.StatusInternalServerError
-
-			if e, ok := err.(*fiber.Error); ok {
-				code = e.Code
-			}
-
-			ctx.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSONCharsetUTF8)
-
-			return ctx.Status(code).JSON(err)
-		},
+		JSONEncoder:  sonic.Marshal,
+		JSONDecoder:  sonic.Unmarshal,
+		ErrorHandler: middleware.ErrorHandler,
 	})
 
 	middleware.FiberMiddleware(app, logger)
@@ -65,7 +55,12 @@ func main() {
 		zap.AddCallerSkip(3),
 		zap.AddStacktrace(zapcore.PanicLevel),
 	)
-	defer logger.Sync()
+	defer func(logger *zap.Logger) {
+		err := logger.Sync()
+		if err != nil {
+			panic(err)
+		}
+	}(logger)
 
 	app, cleanup, err := wireApp(cfg, logger)
 	if err != nil {

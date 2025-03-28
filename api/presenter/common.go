@@ -5,3 +5,7 @@ type ErrorResponse struct {
 	Message string `json:"message"`
 	Data    *any   `json:"data"`
 }
+
+func (r ErrorResponse) Error() string {
+	return r.Message
+}

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"live-pilot/api/presenter/errors"
 	"live-pilot/pkg/service"
 	"strconv"
 
@@ -29,7 +30,7 @@ func (u *UserHandler) GetUser(c *fiber.Ctx) error {
 	idStr := c.Params("id")
 	id, err := strconv.ParseUint(idStr, 10, 32)
 	if err != nil {
-		return &fiber.Error{Code: fiber.StatusBadRequest, Message: "id is invalid"}
+		return errors.BadRequest("invalid user id: %s", idStr)
 	}
 	return c.JSON(u.us.GetUser(uint32(id)))
 }

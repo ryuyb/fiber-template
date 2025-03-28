@@ -1,34 +1,28 @@
 package errors
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"live-pilot/api/presenter"
 )
 
-func NotFound(message string) presenter.ErrorResponse {
+func NotFound(format string, v ...string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusNotFound,
-		Message: message,
+		Message: fmt.Sprintf(format, v),
 	}
 }
 
-func InternalServerError(message string) presenter.ErrorResponse {
+func InternalServerError(format string, v ...string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusInternalServerError,
-		Message: message,
+		Message: fmt.Sprintf(format, v),
 	}
 }
 
-func BadRequest(message string) presenter.ErrorResponse {
+func BadRequest(format string, v ...string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusBadRequest,
-		Message: message,
-	}
-}
-
-func Error(code int, message string) presenter.ErrorResponse {
-	return presenter.ErrorResponse{
-		Code:    code,
-		Message: message,
+		Message: fmt.Sprintf(format, v),
 	}
 }

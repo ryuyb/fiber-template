@@ -1,8 +1,6 @@
 package conf
 
 import (
-	"os"
-
 	"github.com/gofiber/fiber/v2/log"
 	"github.com/ilyakaznacheev/cleanenv"
 )
@@ -17,7 +15,6 @@ func New(path string) AppConfig {
 
 	if err := cleanenv.ReadConfig(path, &cfg); err != nil {
 		log.Fatalf("read configuration failed: %v", err)
-		os.Exit(2)
 	}
 
 	return cfg
