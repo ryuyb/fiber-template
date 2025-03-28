@@ -16,6 +16,10 @@ import (
 	"live-poilot/pkg/service"
 )
 
+import (
+	_ "live-poilot/docs"
+)
+
 // Injectors from wire.go:
 
 func wireApp(appConfig conf.AppConfig, logger *zap.Logger) (*fiber.App, func(), error) {

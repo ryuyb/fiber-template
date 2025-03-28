@@ -2,18 +2,19 @@ package repository
 
 import (
 	"context"
+	"entgo.io/ent/dialect"
 	"live-poilot/pkg/conf"
 	"live-poilot/pkg/ent"
 
-	"entgo.io/ent/dialect/sql"
+	entSql "entgo.io/ent/dialect/sql"
 
 	"github.com/gofiber/fiber/v2/log"
 	_ "github.com/jackc/pgx/v5/stdlib"
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 type Repository struct {
-	drv *sql.Driver
+	drv *entSql.Driver
 	db  *ent.Client
 }
 
@@ -23,16 +24,16 @@ func (r *Repository) Close() error {
 
 func NewRepository(cfg conf.AppConfig) (*Repository, func(), error) {
 	var (
-		drv *sql.Driver
+		drv *entSql.Driver
 		err error
 	)
 	switch cfg.Database.Driver {
 	case "sqlite3", "sqlite":
-		drv, err = sql.Open("sqlite3", cfg.Database.Source)
+		drv, err = entSql.Open(dialect.SQLite, cfg.Database.Source)
 	case "pgx", "postgres":
-		drv, err = sql.Open("pgx", cfg.Database.Source)
+		drv, err = entSql.Open("pgx", cfg.Database.Source)
 	default:
-		drv, err = sql.Open(cfg.Database.Driver, cfg.Database.Source)
+		drv, err = entSql.Open(cfg.Database.Driver, cfg.Database.Source)
 	}
 	if err != nil {
 		log.Fatalf("failed opening connection to db: %v", err)
