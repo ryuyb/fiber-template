@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"live-poilot/pkg/service"
+	"live-pilot/pkg/service"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"

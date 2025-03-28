@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"live-poilot/api/presenter"
+	"live-pilot/api/presenter/errors"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,7 +9,7 @@ import (
 func NotFoundMiddleware(a *fiber.App) {
 	a.Use(
 		func(c *fiber.Ctx) error {
-			return c.Status(fiber.StatusNotFound).JSON(presenter.ErrorResponse{Code: fiber.StatusNotFound, Message: "endpoint is not found"})
+			return c.Status(fiber.StatusNotFound).JSON(errors.NotFound("endpoint is not found"))
 		},
 	)
 }

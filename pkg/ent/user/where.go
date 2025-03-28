@@ -3,7 +3,7 @@
 package user
 
 import (
-	"live-poilot/pkg/ent/predicate"
+	"live-pilot/pkg/ent/predicate"
 	"time"
 
 	"entgo.io/ent/dialect/sql"

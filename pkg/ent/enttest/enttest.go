@@ -5,11 +5,11 @@ package enttest
 import (
 	"context"
 
-	"live-poilot/pkg/ent"
+	"live-pilot/pkg/ent"
 	// required by schema hooks.
-	_ "live-poilot/pkg/ent/runtime"
+	_ "live-pilot/pkg/ent/runtime"
 
-	"live-poilot/pkg/ent/migrate"
+	"live-pilot/pkg/ent/migrate"
 
 	"entgo.io/ent/dialect/sql/schema"
 )

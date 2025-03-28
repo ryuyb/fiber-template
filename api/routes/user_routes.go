@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"live-poilot/api/handlers"
+	"live-pilot/api/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

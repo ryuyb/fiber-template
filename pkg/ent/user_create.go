@@ -6,7 +6,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"live-poilot/pkg/ent/user"
+	"live-pilot/pkg/ent/user"
 	"time"
 
 	"entgo.io/ent/dialect/sql/sqlgraph"

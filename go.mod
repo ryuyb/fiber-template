@@ -1,4 +1,4 @@
-module live-poilot
+module live-pilot
 
 go 1.24.1
 

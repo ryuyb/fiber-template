@@ -9,9 +9,9 @@ import (
 	"log"
 	"reflect"
 
-	"live-poilot/pkg/ent/migrate"
+	"live-pilot/pkg/ent/migrate"
 
-	"live-poilot/pkg/ent/user"
+	"live-pilot/pkg/ent/user"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"

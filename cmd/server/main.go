@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	"live-poilot/api/routes"
-	"live-poilot/pkg/conf"
-	"live-poilot/pkg/middleware"
-	"live-poilot/pkg/utils"
+	"live-pilot/api/routes"
+	"live-pilot/pkg/conf"
+	"live-pilot/pkg/middleware"
+	"live-pilot/pkg/utils"
 
 	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
@@ -13,7 +13,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	_ "live-poilot/docs"
+	_ "live-pilot/docs"
 )
 
 var flagconf string
@@ -52,7 +52,7 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 	return app
 }
 
-// @title LivePoliot
+// @title LivePilot
 // @version 1.0
 // @description This is an API for Live
 

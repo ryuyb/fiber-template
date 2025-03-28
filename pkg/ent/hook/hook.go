@@ -5,7 +5,7 @@ package hook
 import (
 	"context"
 	"fmt"
-	"live-poilot/pkg/ent"
+	"live-pilot/pkg/ent"
 )
 
 // The UserFunc type is an adapter to allow the use of ordinary

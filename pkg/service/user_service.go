@@ -1,8 +1,8 @@
 package service
 
 import (
-	"live-poilot/pkg/ent"
-	"live-poilot/pkg/repository"
+	"live-pilot/pkg/ent"
+	"live-pilot/pkg/repository"
 )
 
 type UserService struct {

@@ -3,8 +3,8 @@
 package ent
 
 import (
-	"live-poilot/pkg/ent/schema"
-	"live-poilot/pkg/ent/user"
+	"live-pilot/pkg/ent/schema"
+	"live-pilot/pkg/ent/user"
 	"time"
 )
 

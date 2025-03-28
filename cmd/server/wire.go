@@ -4,11 +4,11 @@
 package main
 
 import (
-	"live-poilot/api/handlers"
-	"live-poilot/api/routes"
-	"live-poilot/pkg/conf"
-	"live-poilot/pkg/repository"
-	"live-poilot/pkg/service"
+	"live-pilot/api/handlers"
+	"live-pilot/api/routes"
+	"live-pilot/pkg/conf"
+	"live-pilot/pkg/repository"
+	"live-pilot/pkg/service"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/wire"

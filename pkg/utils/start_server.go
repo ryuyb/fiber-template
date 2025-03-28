@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"live-poilot/pkg/conf"
+	"live-pilot/pkg/conf"
 	"os"
 	"os/signal"
 

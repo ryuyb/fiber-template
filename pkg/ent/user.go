@@ -4,7 +4,7 @@ package ent
 
 import (
 	"fmt"
-	"live-poilot/pkg/ent/user"
+	"live-pilot/pkg/ent/user"
 	"strings"
 	"time"
 

@@ -2,7 +2,7 @@
 
 package runtime
 
-// The schema-stitching logic is generated in live-poilot/pkg/ent/runtime.go
+// The schema-stitching logic is generated in live-pilot/pkg/ent/runtime.go
 
 const (
 	Version = "v0.14.4"                                         // Version of ent codegen.

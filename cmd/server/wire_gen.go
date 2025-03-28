@@ -9,15 +9,15 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
-	"live-poilot/api/handlers"
-	"live-poilot/api/routes"
-	"live-poilot/pkg/conf"
-	"live-poilot/pkg/repository"
-	"live-poilot/pkg/service"
+	"live-pilot/api/handlers"
+	"live-pilot/api/routes"
+	"live-pilot/pkg/conf"
+	"live-pilot/pkg/repository"
+	"live-pilot/pkg/service"
 )
 
 import (
-	_ "live-poilot/docs"
+	_ "live-pilot/docs"
 )
 
 // Injectors from wire.go:

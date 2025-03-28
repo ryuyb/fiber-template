@@ -5,8 +5,8 @@ package ent
 import (
 	"context"
 	"fmt"
-	"live-poilot/pkg/ent/predicate"
-	"live-poilot/pkg/ent/user"
+	"live-pilot/pkg/ent/predicate"
+	"live-pilot/pkg/ent/user"
 	"math"
 
 	"entgo.io/ent"

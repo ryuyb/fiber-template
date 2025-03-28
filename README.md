@@ -1,4 +1,4 @@
-# Live-Poilot API
+# Live-pilot API
 
 A high-performance API service built with Go and Fiber framework.
 
@@ -94,8 +94,8 @@ make help
 ### Docker
 
 ```bash
-docker build -t live-poilot .
-docker run -p 8000:8000 live-poilot
+docker build -t live-pilot .
+docker run -p 8000:8000 live-pilot
 ```
 
 ### Database Migrations

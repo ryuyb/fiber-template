@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	"live-poilot/pkg/ent"
+	"live-pilot/pkg/ent"
 )
 
 type UserRepository struct {

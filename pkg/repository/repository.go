@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"entgo.io/ent/dialect"
-	"live-poilot/pkg/conf"
-	"live-poilot/pkg/ent"
+	"live-pilot/pkg/conf"
+	"live-pilot/pkg/ent"
 
 	entSql "entgo.io/ent/dialect/sql"
 
