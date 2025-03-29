@@ -6,23 +6,23 @@ import (
 	"live-pilot/api/presenter"
 )
 
-func NotFound(format string, v ...string) presenter.ErrorResponse {
+func NotFound(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusNotFound,
-		Message: fmt.Sprintf(format, v),
+		Message: fmt.Sprintf(message),
 	}
 }
 
-func InternalServerError(format string, v ...string) presenter.ErrorResponse {
+func InternalServerError(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusInternalServerError,
-		Message: fmt.Sprintf(format, v),
+		Message: fmt.Sprintf(message),
 	}
 }
 
-func BadRequest(format string, v ...string) presenter.ErrorResponse {
+func BadRequest(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusBadRequest,
-		Message: fmt.Sprintf(format, v),
+		Message: fmt.Sprintf(message),
 	}
 }

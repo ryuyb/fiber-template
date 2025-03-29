@@ -1,32 +1,31 @@
 package middleware
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/log"
 	"live-pilot/api/presenter"
 	"live-pilot/api/presenter/errors"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/log"
+	"github.com/samber/lo"
 )
 
 const (
-	contentTypeHeader = fiber.HeaderContentType
-	jsonContentType   = fiber.MIMEApplicationJSONCharsetUTF8
-	defaultErrorMsg   = "Internal Server Error"
+	defaultErrorMsg = "Internal Server Error"
 )
 
 func ErrorHandler(ctx *fiber.Ctx, err error) error {
 	var errorResponse presenter.ErrorResponse
 
-	switch e := err.(type) {
-	case *fiber.Error:
+	if e, ok := lo.ErrorsAs[*fiber.Error](err); ok {
 		errorResponse = presenter.ErrorResponse{
 			Code:    e.Code,
 			Message: e.Message,
 		}
-	case presenter.ErrorResponse:
+	} else if e, ok := lo.ErrorsAs[presenter.ErrorResponse](err); ok {
 		errorResponse = e
-	default:
+	} else {
 		errorResponse = errors.InternalServerError(defaultErrorMsg)
-		log.Errorf("ErrorHandler: %s | Path: %s | Method: %s | Error: %v",
+		log.Panicf("ErrorHandler: %s | Path: %s | Method: %s | Error: %v",
 			defaultErrorMsg,
 			ctx.Path(),
 			ctx.Method(),
@@ -34,6 +33,5 @@ func ErrorHandler(ctx *fiber.Ctx, err error) error {
 		)
 	}
 
-	ctx.Set(contentTypeHeader, jsonContentType)
 	return ctx.Status(errorResponse.Code).JSON(errorResponse)
 }
