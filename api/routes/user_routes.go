@@ -17,4 +17,5 @@ func NewUserRoutes(h *handlers.UserHandler) *UserRoutes {
 func (ur *UserRoutes) ApplyRoutes(r fiber.Router) {
 	g := r.Group("/user")
 	g.Get("/:id", ur.h.GetUser)
+	g.Post("/", ur.h.SaveUser)
 }

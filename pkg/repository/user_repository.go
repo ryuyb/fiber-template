@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"live-pilot/api/presenter"
+	"live-pilot/api/presenter/errors"
 	"live-pilot/pkg/ent"
 )
 
@@ -18,7 +19,7 @@ func NewUserRepository(repo *Repository) *UserRepository {
 func (ur *UserRepository) GetUser(id uint32) *ent.User {
 	user, err := ur.repo.db.User.Get(context.Background(), id)
 	if err != nil {
-		panic(fmt.Errorf("user not found with id %d, err: %w", id, err))
+		panic(errors.NotFound(fmt.Sprintf("user not found with id %d", id)))
 	}
 	return user
 }

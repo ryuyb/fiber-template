@@ -1,28 +1,28 @@
 package errors
 
 import (
-	"fmt"
-	"github.com/gofiber/fiber/v2"
 	"live-pilot/api/presenter"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func NotFound(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusNotFound,
-		Message: fmt.Sprintf(message),
+		Message: message,
 	}
 }
 
 func InternalServerError(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusInternalServerError,
-		Message: fmt.Sprintf(message),
+		Message: message,
 	}
 }
 
 func BadRequest(message string) presenter.ErrorResponse {
 	return presenter.ErrorResponse{
 		Code:    fiber.StatusBadRequest,
-		Message: fmt.Sprintf(message),
+		Message: message,
 	}
 }
