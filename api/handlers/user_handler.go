@@ -51,10 +51,17 @@ func (u *UserHandler) GetUser(c *fiber.Ctx) error {
 func (u *UserHandler) SaveUser(c *fiber.Ctx) error {
 	var saveUserReq presenter.SaveUserReq
 	if err := c.BodyParser(&saveUserReq); err != nil {
+		log.Errorf("error parsing request body: %#v", err)
 		return errors.BadRequest("invalid user request")
 	}
 	user, err := u.us.SaveUser(saveUserReq)
 	if err != nil {
+		if ent.IsConstraintError(err) {
+			return errors.BadRequest("user is already exists")
+		}
+		if ent.IsNotFound(err) {
+			return errors.NotFound("user not found")
+		}
 		return errors.InternalServerError(fmt.Sprintf("occurred database error: %v", err))
 	}
 	return c.JSON(user)
