@@ -3,17 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/bytedance/sonic"
 	"github.com/gofiber/contrib/fiberzap/v2"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
+	fiberSwagger "github.com/swaggo/fiber-swagger"
 	"live-pilot/api/routes"
+	_ "live-pilot/docs"
 	"live-pilot/pkg/conf"
 	"live-pilot/pkg/middleware"
 	"live-pilot/pkg/utils"
-
-	"github.com/bytedance/sonic"
-	"github.com/gofiber/fiber/v2"
-	fiberSwagger "github.com/swaggo/fiber-swagger"
-	_ "live-pilot/docs"
 )
 
 var flagconf string
@@ -59,6 +58,7 @@ func newFiberApp(logger *fiberzap.LoggerConfig, appRoutes []routes.Routes) *Fibe
 // @host		127.0.0.1:8000
 // @BasePath	/api
 func main() {
+	flag.Parse()
 	cfg := conf.New(flagconf)
 
 	fiberApp, cleanup, err := wireApp(cfg)

@@ -31,7 +31,7 @@ func New(path string) AppConfig {
 	var cfg AppConfig
 
 	if err := cleanenv.ReadConfig(path, &cfg); err != nil {
-		log.Fatalf("read configuration failed: %v", err)
+		log.Fatalf("read configuration failed, path: %s, error: %v", path, err)
 	}
 
 	return cfg
