@@ -5,9 +5,26 @@ import (
 	"github.com/ilyakaznacheev/cleanenv"
 )
 
+type Env string
+
+const (
+	DevEnv  = "dev"
+	ProdEnv = "prod"
+)
+
 type AppConfig struct {
-	Server   ServerConfig   `yaml:"server"`
-	Database DatabaseConfig `yaml:"database"`
+	Environment Env            `yaml:"env" env:"APP_ENV" env-default:"prod"` // prod, dev
+	Server      ServerConfig   `yaml:"server"`
+	Log         LogConfig      `yaml:"log"`
+	Database    DatabaseConfig `yaml:"database"`
+}
+
+func (c *AppConfig) IsProdEnv() bool {
+	return c.Environment == ProdEnv
+}
+
+func (c *AppConfig) IsDevEnv() bool {
+	return c.Environment == DevEnv
 }
 
 func New(path string) AppConfig {

@@ -1,6 +1,16 @@
 server:
   addr: 0.0.0.0:8000
 
+log:
+  level: info
+  file:
+    enable: true
+    path: "./logs/app.log"
+    max_size: 10 # MB
+    max_backups: 7
+    max_age: 30 # days
+    compress: true
+
 database:
   driver: sqlite3
   source: ":memory:?_fk=1&_pragma=foreign_keys(1)"

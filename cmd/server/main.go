@@ -2,6 +2,9 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"github.com/gofiber/contrib/fiberzap/v2"
+	"github.com/gofiber/fiber/v2/log"
 	"live-pilot/api/routes"
 	"live-pilot/pkg/conf"
 	"live-pilot/pkg/middleware"
@@ -10,9 +13,6 @@ import (
 	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
 	fiberSwagger "github.com/swaggo/fiber-swagger"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
-
 	_ "live-pilot/docs"
 )
 
@@ -22,12 +22,19 @@ func init() {
 	flag.StringVar(&flagconf, "conf", "config.yml", "config path, eg: -conf config.yml")
 }
 
-func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
+type FiberApp struct {
+	app    *fiber.App
+	logger *fiberzap.LoggerConfig
+}
+
+func newFiberApp(logger *fiberzap.LoggerConfig, appRoutes []routes.Routes) *FiberApp {
 	app := fiber.New(fiber.Config{
 		JSONEncoder:  sonic.Marshal,
 		JSONDecoder:  sonic.Unmarshal,
 		ErrorHandler: middleware.ErrorHandler,
 	})
+
+	log.SetLogger(logger)
 
 	middleware.FiberMiddleware(app, logger)
 
@@ -39,7 +46,10 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 
 	middleware.NotFoundMiddleware(app)
 
-	return app
+	return &FiberApp{
+		app:    app,
+		logger: logger,
+	}
 }
 
 //	@title			LivePilot
@@ -51,22 +61,17 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 func main() {
 	cfg := conf.New(flagconf)
 
-	logger, _ := zap.NewDevelopment(
-		zap.AddCallerSkip(3),
-		zap.AddStacktrace(zapcore.PanicLevel),
-	)
-	defer func(logger *zap.Logger) {
-		err := logger.Sync()
-		if err != nil {
-			panic(err)
-		}
-	}(logger)
-
-	app, cleanup, err := wireApp(cfg, logger)
+	fiberApp, cleanup, err := wireApp(cfg)
 	if err != nil {
 		panic(err)
 	}
 	defer cleanup()
+	defer func(logger *fiberzap.LoggerConfig) {
+		err := logger.Sync()
+		if err != nil {
+			panic(fmt.Errorf("failed to sync logger: %v", err))
+		}
+	}(fiberApp.logger)
 
-	utils.StartServerWithGracefulShutdown(cfg, app)
+	utils.StartServerWithGracefulShutdown(cfg, fiberApp.app)
 }

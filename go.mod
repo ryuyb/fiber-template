@@ -13,6 +13,7 @@ require (
 	github.com/samber/lo v1.49.1
 	github.com/swaggo/fiber-swagger v1.3.0
 	github.com/swaggo/swag v1.16.4
+	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 	modernc.org/sqlite v1.36.2
 )
 

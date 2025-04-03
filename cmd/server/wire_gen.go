@@ -7,11 +7,10 @@
 package main
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"go.uber.org/zap"
 	"live-pilot/api/handlers"
 	"live-pilot/api/routes"
 	"live-pilot/pkg/conf"
+	"live-pilot/pkg/middleware"
 	"live-pilot/pkg/repository"
 	"live-pilot/pkg/service"
 )
@@ -22,7 +21,8 @@ import (
 
 // Injectors from wire.go:
 
-func wireApp(appConfig conf.AppConfig, logger *zap.Logger) (*fiber.App, func(), error) {
+func wireApp(appConfig conf.AppConfig) (*FiberApp, func(), error) {
+	loggerConfig := middleware.NewLogger(appConfig)
 	repositoryRepository, cleanup, err := repository.NewRepository(appConfig)
 	if err != nil {
 		return nil, nil, err
@@ -32,8 +32,8 @@ func wireApp(appConfig conf.AppConfig, logger *zap.Logger) (*fiber.App, func(), 
 	userHandler := handlers.NewUserHandler(userService)
 	userRoutes := routes.NewUserRoutes(userHandler)
 	v := routes.ProvideRoutes(userRoutes)
-	app := newFiberApp(logger, v)
-	return app, func() {
+	fiberApp := newFiberApp(loggerConfig, v)
+	return fiberApp, func() {
 		cleanup()
 	}, nil
 }
