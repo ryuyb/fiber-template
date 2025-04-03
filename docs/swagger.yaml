@@ -1,9 +1,36 @@
 basePath: /api
+definitions:
+  ent.User:
+    properties:
+      createTime:
+        description: CreateTime holds the value of the "create_time" field.
+        type: string
+      id:
+        description: ID of the ent.
+        type: integer
+      password:
+        description: Password holds the value of the "password" field.
+        type: string
+      updateTime:
+        description: UpdateTime holds the value of the "update_time" field.
+        type: string
+      username:
+        description: Username holds the value of the "username" field.
+        type: string
+    type: object
+  presenter.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
 host: 127.0.0.1:8000
 info:
   contact: {}
   description: This is an API for Live
-  title: LivePoliot
+  title: LivePilot
   version: "1.0"
 paths:
   /user/{id}:
@@ -23,13 +50,19 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/ent.User'
         "400":
           description: Bad Request
           schema:
-            additionalProperties: true
-            type: object
+            $ref: '#/definitions/presenter.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
       summary: Get user by ID
       tags:
       - user

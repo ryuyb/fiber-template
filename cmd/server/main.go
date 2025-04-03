@@ -42,12 +42,12 @@ func newFiberApp(logger *zap.Logger, appRoutes []routes.Routes) *fiber.App {
 	return app
 }
 
-// @title LivePilot
-// @version 1.0
-// @description This is an API for Live
+//	@title			LivePilot
+//	@version		1.0
+//	@description	This is an API for Live
 
-// @host 127.0.0.1:8000
-// @BasePath /api
+// @host		127.0.0.1:8000
+// @BasePath	/api
 func main() {
 	cfg := conf.New(flagconf)
 

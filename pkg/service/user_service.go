@@ -14,7 +14,7 @@ func NewUserService(repo *repository.UserRepository) *UserService {
 	return &UserService{repo: repo}
 }
 
-func (us *UserService) GetUser(id uint32) *ent.User {
+func (us *UserService) GetUser(id uint32) (*ent.User, error) {
 	return us.repo.GetUser(id)
 }
 

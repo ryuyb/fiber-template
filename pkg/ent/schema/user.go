@@ -5,7 +5,7 @@ import (
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/schema/field"
 	"entgo.io/ent/schema/index"
-	"entgo.io/ent/schema/mixin"
+	"live-pilot/pkg/utils/entgo"
 )
 
 // User holds the schema definition for the User entity.
@@ -38,6 +38,6 @@ func (User) Indexes() []ent.Index {
 
 func (User) Mixin() []ent.Mixin {
 	return []ent.Mixin{
-		mixin.Time{},
+		entgo.Time{},
 	}
 }

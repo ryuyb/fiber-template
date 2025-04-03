@@ -2,9 +2,7 @@ package repository
 
 import (
 	"context"
-	"fmt"
 	"live-pilot/api/presenter"
-	"live-pilot/api/presenter/errors"
 	"live-pilot/pkg/ent"
 )
 
@@ -16,12 +14,12 @@ func NewUserRepository(repo *Repository) *UserRepository {
 	return &UserRepository{repo: repo}
 }
 
-func (ur *UserRepository) GetUser(id uint32) *ent.User {
+func (ur *UserRepository) GetUser(id uint32) (*ent.User, error) {
 	user, err := ur.repo.db.User.Get(context.Background(), id)
 	if err != nil {
-		panic(errors.NotFound(fmt.Sprintf("user not found with id %d", id)))
+		return nil, err
 	}
-	return user
+	return user, nil
 }
 
 func (ur *UserRepository) CreateUser(u presenter.SaveUserReq) (*ent.User, error) {
