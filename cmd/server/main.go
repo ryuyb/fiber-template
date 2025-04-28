@@ -59,7 +59,7 @@ func newFiberApp(logger *fiberzap.LoggerConfig, appRoutes []routes.Routes) *Fibe
 // @BasePath	/api
 func main() {
 	flag.Parse()
-	cfg := conf.New(flagconf)
+	cfg := conf.Initialize(flagconf)
 
 	fiberApp, cleanup, err := wireApp(cfg)
 	if err != nil {

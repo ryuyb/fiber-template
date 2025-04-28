@@ -2,8 +2,8 @@ package routes
 
 import "github.com/google/wire"
 
-var ProviderSet = wire.NewSet(NewUserRoutes, ProvideRoutes)
+var ProviderSet = wire.NewSet(NewUserRoutes, NewAuthRoutes, ProvideRoutes)
 
-func ProvideRoutes(ur *UserRoutes) []Routes {
-	return []Routes{ur}
+func ProvideRoutes(user *UserRoutes, auth *AuthRoutes) []Routes {
+	return []Routes{user, auth}
 }

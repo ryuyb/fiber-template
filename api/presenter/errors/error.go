@@ -26,3 +26,10 @@ func BadRequest(message string) presenter.ErrorResponse {
 		Message: message,
 	}
 }
+
+func Unauthorized(message string) presenter.ErrorResponse {
+	return presenter.ErrorResponse{
+		Code:    fiber.StatusUnauthorized,
+		Message: message,
+	}
+}

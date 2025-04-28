@@ -15,3 +15,6 @@ database:
   driver: sqlite3
   source: ":memory:?_fk=1&_pragma=foreign_keys(1)"
   migrate: true
+
+jwt:
+  signing_key: 123

@@ -50,15 +50,16 @@ func (u *UserHandler) GetUser(c *fiber.Ctx) error {
 }
 
 // SaveUser 创建或更新用户
-// @Summary 创建或更新用户
-// @Description 根据请求体中的ID判断是新增还是更新用户
-// @Tags User
-// @Accept json
-// @Produce json
-// @Param saveUserReq body presenter.SaveUserReq true "用户信息"
-// @Success 200 {object} ent.User
-// @Failure 400,404,500 {object} presenter.ErrorResponse
-// @Router /users [post]
+//
+//	@Summary		创建或更新用户
+//	@Description	根据请求体中的ID判断是新增还是更新用户
+//	@Tags			User
+//	@Accept			json
+//	@Produce		json
+//	@Param			saveUserReq	body		presenter.SaveUserReq	true	"用户信息"
+//	@Success		200			{object}	ent.User
+//	@Failure		400,404,500	{object}	presenter.ErrorResponse
+//	@Router			/users [post]
 func (u *UserHandler) SaveUser(c *fiber.Ctx) error {
 	var saveUserReq presenter.SaveUserReq
 	if err := c.BodyParser(&saveUserReq); err != nil {

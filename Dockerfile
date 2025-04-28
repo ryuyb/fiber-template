@@ -3,7 +3,7 @@ FROM golang:1.24.1 AS builder
 COPY . /src
 WORKDIR /src
 
-RUN GOPROXY=https://goproxy.cn make build
+RUN make build
 
 FROM debian:stable-slim
 
@@ -18,7 +18,7 @@ COPY --from=builder /src/config.yml data/conf/config.yml
 
 WORKDIR /app
 
-EXPOSE 8080
+EXPOSE 8000
 VOLUME [ "/data/conf" ]
 
-CMD [ "./server", "-conf", "/data/conf" ]
+CMD [ "./server", "-conf", "/data/conf/config.yml" ]

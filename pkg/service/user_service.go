@@ -43,3 +43,15 @@ func (us *UserService) SaveUser(u presenter.SaveUserReq) (*ent.User, error) {
 	}
 	return us.repo.UpdateUser(u)
 }
+
+func (us *UserService) GetUserByUsername(username string) (*ent.User, error) {
+	return us.repo.GetUserByUsername(username)
+}
+
+func (us *UserService) CheckPassword(req presenter.UserLoginReq) (bool, error) {
+	user, err := us.GetUserByUsername(req.Username)
+	if err != nil {
+		return false, err
+	}
+	return utils.CheckPasswordHash(req.Password, user.Password), nil
+}

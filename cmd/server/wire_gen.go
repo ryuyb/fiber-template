@@ -31,7 +31,9 @@ func wireApp(appConfig conf.AppConfig) (*FiberApp, func(), error) {
 	userService := service.NewUserService(userRepository)
 	userHandler := handlers.NewUserHandler(userService)
 	userRoutes := routes.NewUserRoutes(userHandler)
-	v := routes.ProvideRoutes(userRoutes)
+	authHandler := handlers.NewAuthHandler(userService)
+	authRoutes := routes.NewAuthRoutes(authHandler)
+	v := routes.ProvideRoutes(userRoutes, authRoutes)
 	fiberApp := newFiberApp(loggerConfig, v)
 	return fiberApp, func() {
 		cleanup()

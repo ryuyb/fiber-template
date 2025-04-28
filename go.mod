@@ -6,6 +6,7 @@ require (
 	entgo.io/ent v0.14.4
 	github.com/bytedance/sonic v1.13.2
 	github.com/gofiber/contrib/fiberzap/v2 v2.1.6
+	github.com/gofiber/contrib/jwt v1.1.1
 	github.com/gofiber/fiber/v2 v2.52.6
 	github.com/google/wire v0.6.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0
@@ -23,6 +24,7 @@ require (
 	ariga.io/atlas v0.32.1 // indirect
 	github.com/BurntSushi/toml v1.5.0 // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/MicahParks/keyfunc/v2 v2.1.0 // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/bmatcuk/doublestar v1.3.4 // indirect
@@ -34,6 +36,7 @@ require (
 	github.com/go-openapi/jsonreference v0.21.0 // indirect
 	github.com/go-openapi/spec v0.21.0 // indirect
 	github.com/go-openapi/swag v0.23.1 // indirect
+	github.com/golang-jwt/jwt/v5 v5.2.2 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/hashicorp/hcl/v2 v2.23.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect

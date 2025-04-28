@@ -4,6 +4,7 @@ import (
 	"context"
 	"live-pilot/api/presenter"
 	"live-pilot/pkg/ent"
+	"live-pilot/pkg/ent/user"
 )
 
 type UserRepository struct {
@@ -34,4 +35,10 @@ func (ur *UserRepository) UpdateUser(u presenter.SaveUserReq) (*ent.User, error)
 		SetUsername(u.Username).
 		SetPassword(u.Password).
 		Save(context.Background())
+}
+
+func (ur *UserRepository) GetUserByUsername(username string) (*ent.User, error) {
+	return ur.repo.db.User.Query().
+		Where(user.Username(username)).
+		Only(context.Background())
 }
