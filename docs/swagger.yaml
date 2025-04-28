@@ -26,6 +26,15 @@ definitions:
       message:
         type: string
     type: object
+  presenter.SaveUserReq:
+    properties:
+      id:
+        type: integer
+      password:
+        type: string
+      username:
+        type: string
+    type: object
 host: 127.0.0.1:8000
 info:
   contact: {}
@@ -66,4 +75,38 @@ paths:
       summary: Get user by ID
       tags:
       - user
+  /users:
+    post:
+      consumes:
+      - application/json
+      description: 根据请求体中的ID判断是新增还是更新用户
+      parameters:
+      - description: 用户信息
+        in: body
+        name: saveUserReq
+        required: true
+        schema:
+          $ref: '#/definitions/presenter.SaveUserReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
+      summary: 创建或更新用户
+      tags:
+      - User
 swagger: "2.0"

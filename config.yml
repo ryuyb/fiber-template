@@ -1,10 +1,10 @@
 server:
-  addr: 0.0.0.0:8000
+  addr: :8000
 
 log:
   level: info
   file:
-    enable: true
+    enable: false
     path: "./logs/app.log"
     max_size: 10 # MB
     max_backups: 7
