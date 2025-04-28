@@ -13,9 +13,19 @@ import (
 	_ "modernc.org/sqlite"
 )
 
+var repository *Repository
+
+func GetRepository() *Repository {
+	return repository
+}
+
 type Repository struct {
 	drv *entSql.Driver
 	db  *ent.Client
+}
+
+func (r *Repository) GetClient() *ent.Client {
+	return r.db
 }
 
 func (r *Repository) Close() error {
@@ -59,5 +69,6 @@ func NewRepository(cfg conf.AppConfig) (*Repository, func(), error) {
 			log.Errorf("failed close repository resources: %v", err)
 		}
 	}
-	return &Repository{drv: drv, db: client}, cleanup, nil
+	repository = &Repository{drv: drv, db: client}
+	return repository, cleanup, nil
 }

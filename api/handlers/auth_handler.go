@@ -18,7 +18,7 @@ func NewAuthHandler(us *service.UserService) *AuthHandler {
 
 func (u *AuthHandler) Login(c *fiber.Ctx) error {
 	loginReq := presenter.UserLoginReq{}
-	err := c.BodyParser(loginReq)
+	err := c.BodyParser(&loginReq)
 	if err != nil {
 		return errors.BadRequest("Invalid login information")
 	}
