@@ -95,6 +95,42 @@ make build
 make help
 ```
 
+## Commit Message Guidelines
+
+We follow the [Conventional Commits](https://www.conventionalcommits.org/) standard for commit messages to maintain a clear and consistent commit history. This helps in automated changelog generation and semantic versioning.
+
+### Commit Message Format
+
+**Default Format:**
+
+```text
+<type>(<optional scope>): <description>
+
+<optional body>
+
+<optional footer>
+```
+
+- **Type**: Indicates the kind of change (e.g., `feat`, `fix`, `refactor`, `style`, `test`, `docs`, `build`, `ops`, `chore`).
+- **Scope**: Provides additional context (optional, project-specific).
+- **Description**: A concise summary of the change in imperative, present tense (e.g., "add feature" not "added feature").
+- **Body**: Motivation for the change and contrast with previous behavior (optional).
+- **Footer**: Information about breaking changes or issue references (optional).
+
+**Breaking Changes**: Indicated by an `!` before the `:` in the subject line (e.g., `feat(api)!: remove status endpoint`). Must be described in the footer with `BREAKING CHANGE:`.
+
+**Examples**:
+
+- `feat: add email notifications on new direct messages`
+- `feat(shopping cart): add the amazing button`
+- `fix(shopping-cart): prevent order an empty shopping cart`
+- `perf: decrease memory footprint for unique visitors by using HyperLogLog`
+- `build: update dependencies`
+- `refactor: implement fibonacci number calculation as recursion`
+- `style: remove empty line`
+
+For more details and additional formats (Merge, Revert, Initial Commit), refer to the [full guidelines](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13).
+
 ### Docker
 
 ```bash
