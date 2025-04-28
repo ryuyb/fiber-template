@@ -35,6 +35,18 @@ definitions:
       username:
         type: string
     type: object
+  presenter.UserLoginReq:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  presenter.UserLoginResp:
+    properties:
+      accessToken:
+        type: string
+    type: object
 host: 127.0.0.1:8000
 info:
   contact: {}
@@ -42,6 +54,32 @@ info:
   title: LivePilot
   version: "1.0"
 paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: 通过用户名和密码进行用户登录，返回访问令牌
+      parameters:
+      - description: 登录信息
+        in: body
+        name: loginReq
+        required: true
+        schema:
+          $ref: '#/definitions/presenter.UserLoginReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/presenter.UserLoginResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/presenter.ErrorResponse'
+      summary: 用户登录
+      tags:
+      - Auth
   /user/{id}:
     get:
       consumes:
