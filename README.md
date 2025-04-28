@@ -25,10 +25,13 @@ A high-performance API service built with Go and Fiber framework.
 
 1. Clone the repository
 2. Install dependencies:
+
    ```bash
    go mod download
    ```
+
 3. Build and run:
+
    ```bash
    go run cmd/server/main.go
    ```
@@ -55,6 +58,7 @@ Interactive API documentation is available at:
 `http://localhost:8000/swagger/index.html`
 
 To generate Swagger docs:
+
 ```bash
 swag init -g cmd/server/main.go --output docs
 ```
@@ -101,6 +105,7 @@ docker run -p 8000:8000 live-pilot
 ### Database Migrations
 
 To generate new migrations:
+
 ```bash
 go run -mod=mod entgo.io/ent/cmd/ent generate ./pkg/ent/schema
 ```
