@@ -5,6 +5,7 @@ import (
 	"live-pilot/api/presenter"
 	"live-pilot/api/presenter/errors"
 	"live-pilot/pkg/service"
+	"live-pilot/pkg/utils"
 )
 
 type AuthHandler struct {
@@ -21,9 +22,15 @@ func (u *AuthHandler) Login(c *fiber.Ctx) error {
 	if err != nil {
 		return errors.BadRequest("Invalid login information")
 	}
-	passed, err := u.us.CheckPassword(loginReq)
-	if !passed || err != nil {
+	user, err := u.us.CheckPassword(loginReq)
+	if user == nil || err != nil {
 		return errors.BadRequest("Incorrect username or password")
 	}
-	return c.JSON(fiber.Map{})
+	accessToken, err := utils.GenerateAccessToken(user.ID)
+	if err != nil {
+		return errors.BadRequest("Generate access token failed")
+	}
+	return c.JSON(fiber.Map{
+		"accessToken": accessToken,
+	})
 }

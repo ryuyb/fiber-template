@@ -48,10 +48,10 @@ func (us *UserService) GetUserByUsername(username string) (*ent.User, error) {
 	return us.repo.GetUserByUsername(username)
 }
 
-func (us *UserService) CheckPassword(req presenter.UserLoginReq) (bool, error) {
+func (us *UserService) CheckPassword(req presenter.UserLoginReq) (*ent.User, error) {
 	user, err := us.GetUserByUsername(req.Username)
-	if err != nil {
-		return false, err
+	if err != nil || !utils.CheckPasswordHash(req.Password, user.Password) {
+		return nil, err
 	}
-	return utils.CheckPasswordHash(req.Password, user.Password), nil
+	return user, nil
 }
