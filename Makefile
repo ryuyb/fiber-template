@@ -22,11 +22,6 @@ run:
 air:
 	air -c .air.toml
 
-.PHONY: air-win
-# air for windows
-air-win:
-	air -c .air.win.toml
-
 .PHONY: build
 # build
 build:
