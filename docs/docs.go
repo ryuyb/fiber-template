@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/auth/login": {
             "post": {
-                "description": "通过用户名和密码进行用户登录，返回访问令牌",
+                "description": "User login with username and password returns an access token",
                 "consumes": [
                     "application/json"
                 ],
@@ -27,10 +27,10 @@ const docTemplate = `{
                 "tags": [
                     "Auth"
                 ],
-                "summary": "用户登录",
+                "summary": "user login",
                 "parameters": [
                     {
-                        "description": "登录信息",
+                        "description": "LoginInfo",
                         "name": "loginReq",
                         "in": "body",
                         "required": true,
@@ -65,7 +65,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "user"
+                    "User"
                 ],
                 "summary": "Get user by ID",
                 "parameters": [
@@ -107,7 +107,7 @@ const docTemplate = `{
         },
         "/users": {
             "post": {
-                "description": "根据请求体中的ID判断是新增还是更新用户",
+                "description": "Determine whether the user is a new or updated user based on the ID in the request body",
                 "consumes": [
                     "application/json"
                 ],
@@ -117,10 +117,10 @@ const docTemplate = `{
                 "tags": [
                     "User"
                 ],
-                "summary": "创建或更新用户",
+                "summary": "Create or update users",
                 "parameters": [
                     {
-                        "description": "用户信息",
+                        "description": "UserInfo",
                         "name": "saveUserReq",
                         "in": "body",
                         "required": true,
@@ -238,8 +238,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "127.0.0.1:8000",
 	BasePath:         "/api",
 	Schemes:          []string{},
-	Title:            "LivePilot",
-	Description:      "This is an API for Live",
+	Title:            "FiberTemplate",
+	Description:      "This is an API",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

@@ -25,7 +25,7 @@ func NewUserHandler(us *service.UserService) *UserHandler {
 //
 //	@Summary		Get user by ID
 //	@Description	Get user details by user ID
-//	@Tags			user
+//	@Tags			User
 //	@Accept			json
 //	@Produce		json
 //	@Param			id			path		int	true	"User ID"
@@ -49,14 +49,14 @@ func (u *UserHandler) GetUser(c *fiber.Ctx) error {
 	return c.JSON(user)
 }
 
-// SaveUser 创建或更新用户
+// SaveUser Create or update users
 //
-//	@Summary		创建或更新用户
-//	@Description	根据请求体中的ID判断是新增还是更新用户
+//	@Summary		Create or update users
+//	@Description	Determine whether the user is a new or updated user based on the ID in the request body
 //	@Tags			User
 //	@Accept			json
 //	@Produce		json
-//	@Param			saveUserReq	body		presenter.SaveUserReq	true	"用户信息"
+//	@Param			saveUserReq	body		presenter.SaveUserReq	true	"UserInfo"
 //	@Success		200			{object}	ent.User
 //	@Failure		400,404,500	{object}	presenter.ErrorResponse
 //	@Router			/users [post]

@@ -1,4 +1,4 @@
-# Live-pilot API
+# Fiber Template API
 
 A high-performance API service built with Go and Fiber framework.
 

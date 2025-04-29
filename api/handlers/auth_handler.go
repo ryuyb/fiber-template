@@ -19,12 +19,12 @@ func NewAuthHandler(us *service.UserService) *AuthHandler {
 
 // Login user login
 //
-//	@Summary		用户登录
-//	@Description	通过用户名和密码进行用户登录，返回访问令牌
+//	@Summary		user login
+//	@Description	User login with username and password returns an access token
 //	@Tags			Auth
 //	@Accept			json
 //	@Produce		json
-//	@Param			loginReq	body		presenter.UserLoginReq	true	"登录信息"
+//	@Param			loginReq	body		presenter.UserLoginReq	true	"LoginInfo"
 //	@Success		200			{object}	presenter.UserLoginResp
 //	@Failure		400			{object}	presenter.ErrorResponse
 //	@Router			/auth/login [post]

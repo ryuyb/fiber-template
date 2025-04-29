@@ -51,9 +51,9 @@ func newFiberApp(logger *fiberzap.LoggerConfig, appRoutes []routes.Routes) *Fibe
 	}
 }
 
-//	@title			LivePilot
+//	@title			FiberTemplate
 //	@version		1.0
-//	@description	This is an API for Live
+//	@description	This is an API
 
 // @host		127.0.0.1:8000
 // @BasePath	/api
